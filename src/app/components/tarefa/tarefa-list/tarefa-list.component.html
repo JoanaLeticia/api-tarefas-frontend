@@ -1,0 +1,53 @@
+<mat-toolbar color="primary">
+    <div class="flex-container">
+        <span class="toolbar-title">Controle de Tarefas</span>
+        <button mat-fab class="accent" routerLink="/tarefas/new">
+            <mat-icon>add</mat-icon>
+        </button>
+    </div>
+</mat-toolbar>
+
+<table mat-table [dataSource]="tarefas" class="mat-elevation-z8">
+
+    <!-- id Column -->
+    <ng-container matColumnDef="id">
+      <th mat-header-cell *matHeaderCellDef> No. </th>
+      <td mat-cell *matCellDef="let t"> {{t.id}} </td> <!-- Corrigido aqui -->
+    </ng-container>
+  
+    <!-- titulo Column -->
+    <ng-container matColumnDef="titulo">
+      <th mat-header-cell *matHeaderCellDef> Título </th>
+      <td mat-cell *matCellDef="let t"> {{t.titulo}} </td> <!-- Corrigido aqui -->
+    </ng-container>
+  
+    <!-- Descrição Column -->
+    <ng-container matColumnDef="descricao">
+      <th mat-header-cell *matHeaderCellDef> Descrição </th>
+      <td mat-cell *matCellDef="let t"> {{t.descricao}} </td> <!-- Corrigido aqui -->
+    </ng-container>
+
+    <!-- status Column -->
+    <ng-container matColumnDef="status">
+      <th mat-header-cell *matHeaderCellDef> Status </th>
+      <td mat-cell *matCellDef="let t"> {{t.status}} </td> <!-- Corrigido aqui -->
+    </ng-container>
+
+    <!-- acao Column -->
+    <ng-container matColumnDef="acao">
+        <th mat-header-cell *matHeaderCellDef> Ação </th>
+        <td mat-cell *matCellDef="let element"> 
+            <button mat-icon-button 
+                color="primary"
+                routerLink="/tarefas/edit/{{element.id}}">
+                <mat-icon>edit</mat-icon>
+            </button>
+            <button mat-icon-button color="warm" (click)="removerTarefa(element.id)">
+                <mat-icon>delete</mat-icon>
+            </button>
+        </td>
+    </ng-container>
+  
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>

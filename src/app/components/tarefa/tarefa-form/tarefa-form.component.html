@@ -1,0 +1,59 @@
+<mat-toolbar color="primary" class="toolbar-title">
+    Cadastro de Tarefa
+</mat-toolbar>
+
+<mat-card>
+    <mat-card-content>
+        <form [formGroup]="formGroup" >
+            <mat-form-field appearance="fill" class="full-width-input">
+                <mat-label>Título</mat-label>
+                <input matInput type="text" formControlName="titulo">
+                <mat-error *ngIf="formGroup.get('titulo') && 
+                                  formGroup.get('titulo')?.invalid &&
+                                  formGroup.get('titulo')?.touched">
+                    O titulo é obrigatório.
+                </mat-error>
+            </mat-form-field>
+            <mat-form-field appearance="fill" class="full-width-input">
+                <mat-label>Descrição</mat-label>
+                <input matInput type="text" formControlName="descricao">
+                <mat-error *ngIf="formGroup.get('descricao') && 
+                                  formGroup.get('descricao')?.invalid &&
+                                  formGroup.get('descricao')?.touched">
+                    A descricao é obrigatória.
+                </mat-error>
+            </mat-form-field>
+            <mat-form-field appearance="fill" class="full-width-input">
+                <mat-label>Status</mat-label>
+                <input matInput type="text" formControlName="status">
+                <mat-error *ngIf="formGroup.get('status') && 
+                                  formGroup.get('status')?.invalid &&
+                                  formGroup.get('status')?.touched">
+                    O status é obrigatório.
+                </mat-error>
+            </mat-form-field>
+        </form>
+    </mat-card-content>
+    <mat-card-actions>
+        <button 
+            mat-raised-button 
+            routerLink="/tarefas"> 
+            Cancelar 
+        </button>
+        <button  
+            mat-raised-button 
+            color="warn"
+            (click)="excluir()"
+            [disabled]="formGroup.invalid"> 
+            Excluir 
+        </button>
+        <button 
+            mat-raised-button color="primary" 
+            (click)="salvar()"
+            [disabled]="formGroup.invalid"> 
+            Salvar 
+        </button>
+    </mat-card-actions>
+
+</mat-card>
+

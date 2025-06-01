@@ -1,59 +1,106 @@
-# FrontendTarefas
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.1.7.
+# 🖥️ Front-end - Gerenciador de Tarefas
 
-## Development server
+Este é o front-end da aplicação de gerenciamento de tarefas, desenvolvido com [Angular](https://angular.io/). Ele consome uma API REST desenvolvida em Quarkus e está integrado com diferentes perfis de ambientes: `dev`, `test` e `prod`.
 
-To start a local development server, run:
+---
 
+## 🎯 Funcionalidades
+
+- Listagem de tarefas
+- Criação de novas tarefas
+- Edição e exclusão de tarefas
+- Integração com API por ambiente
+
+---
+
+## 🔗 Integração com Back-end
+
+O front-end comunica-se com a API de tarefas utilizando variáveis de ambiente definidas nos arquivos:
+
+```
+src/environments/
+├── environment.ts           → Ambiente de desenvolvimento
+├── environment.test.ts      → Ambiente de homologação/testes
+└── environment.prod.ts      → Ambiente de produção
+```
+
+Cada arquivo define a URL base da API:
+
+```ts
+// Exemplo do environment.ts
+export const environment = {
+  production: false,
+  apiUrl: 'http://localhost:8080' // dev
+};
+```
+
+---
+
+## 🚀 Como executar
+
+### Pré-requisitos
+- Node.js (versão 16+)
+- Angular CLI (`npm install -g @angular/cli`)
+
+### Instalar dependências
+```bash
+npm install
+```
+
+### Rodar em modo desenvolvimento
 ```bash
 ng serve
 ```
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+A aplicação estará disponível em `http://localhost:4200`.
 
-## Code scaffolding
+---
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+## 🌍 Perfis de ambiente
 
-```bash
-ng generate component component-name
-```
+| Perfil   | Arquivo                | URL base da API                   |
+|----------|------------------------|-----------------------------------|
+| dev      | `environment.ts`       | `http://localhost:8080`           |
+| test     | `environment.test.ts`  | `http://homolog.frontend.com`     |
+| prod     | `environment.prod.ts`  | `https://app.minhaempresa.com.br` |
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
-
-```bash
-ng generate --help
-```
-
-## Building
-
-To build the project run:
+Para **buildar** para cada ambiente:
 
 ```bash
-ng build
+ng build                 # ambiente dev
+ng build --configuration=test   # ambiente de homologação
+ng build --configuration=production  # ambiente produção
 ```
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
+---
 
-## Running unit tests
+## 🔧 Estrutura básica
 
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
-
-```bash
-ng test
+```
+frontend/
+├── src/
+│   ├── app/
+│   ├── assets/
+│   ├── environments/
+│   │   ├── environment.ts
+│   │   ├── environment.test.ts
+│   │   └── environment.prod.ts
+├── angular.json
+├── package.json
+└── README.md
 ```
 
-## Running end-to-end tests
+---
 
-For end-to-end (e2e) testing, run:
+## 📌 Autora
 
-```bash
-ng e2e
-```
+Joana – Projeto prático para a disciplina de Computação Orientada a Serviços  
+Curso de Sistemas de Informação
 
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
+---
 
-## Additional Resources
+## 📚 Referência técnica
 
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+Este front-end integra com uma API baseada no estudo de caso:  
+**Spotify – Padronização de Ambientes com DevOps e CI/CD**
